@@ -32,7 +32,11 @@ public class SpringBootEpamApplication implements CommandLineRunner {
 		final Long id = messageRepository.save(message).getId();
 		log.info("Created message with id: " + id);
 		
-		log.info("Reading message");
+		log.info("Updating message by Query...");
+		int result = messageRepository.updateMessageSetAuthorForId("Garcia", id);
+		log.info("Updated message: " + result);
+		
+		log.info("Reading message by Pessimistic lock...");
 		message = messageRepository.findById(id).orElseThrow();
 		log.info("Readed message: " + message);
 		
