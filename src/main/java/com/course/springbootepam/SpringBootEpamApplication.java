@@ -22,7 +22,7 @@ public class SpringBootEpamApplication {
 	@Bean
 	public CommandLineRunner run(MessageRepository messageRepository) {
 		return args -> {
-			Message message = new Message("Hello Spring Data", "Antonio");
+			Message message = new Message("Hello Spring Data 2", "Antonio");
 			messageRepository.save(message);
 		};
 	}
