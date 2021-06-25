@@ -22,4 +22,9 @@ public class Message {
 		this.message = message;
 		this.author = author;
 	}
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", message=" + message + ", author=" + author + "]";
+	}
 }
