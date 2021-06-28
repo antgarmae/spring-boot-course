@@ -9,18 +9,27 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.course.springbootepam.model.Message;
 
 @DataJpaTest
-class MessageRepositoryTest {
+class MessageRepositoryIT {
 	
 	@Autowired
 	private MessageRepository repository;
 
 	@Test
-	void testSave() {
+	void findById() {
 		Message message = new Message("test", "tester");
 		repository.save(message);
 		final Long id = repository.save(message).getId();
 		message = repository.findById(id).orElseThrow();
 		assertThat(message).isNotNull();
+	}
+	
+	@Test
+	void updateMessageSetAuthorForId() {
+		Message message = repository.findAll().iterator().next();
+		Long id = message.getId();
+		repository.updateMessageSetAuthorForId("updated", id);
+		Message updatedMessage = repository.findById(id).get();
+		assertThat(updatedMessage.getMessage()).isEqualTo("updated");
 	}
 
 }

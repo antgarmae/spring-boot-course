@@ -9,7 +9,7 @@ class MessageTests {
 	String result = "Message [id=null, message=test, author=tester]";
 
 	@Test
-	void testToString() {
+	void messageToString() {
 		Message message = new Message("test", "tester");
 		assertThat(message.toString()).isEqualTo(result);
 	}
